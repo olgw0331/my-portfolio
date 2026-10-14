@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7efe6">
+  <meta name="description" content="혜정의 포트폴리오: 작업실에서 시작해 테마파크로 이어지는 작은 작품 여행">
+  <title>혜정의 포트폴리오 | Portfolio World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div id="app" class="app" data-scene="opening">
+    <main>
+      <section class="room-scene" id="roomScene" aria-label="포트폴리오 인트로">
+        <!-- [교체 지점 1] 작업실 배경 사진은 styles.css의 .room-picture background:url에서 변경 -->
+        <div class="room-picture" aria-hidden="true"></div>
+        <div class="room-light" aria-hidden="true"></div>
+        <div class="opening" id="opening" aria-live="polite">
+          <div class="intro-kicker">A LITTLE WORLD OF CREATIVITY</div>
+          <h1 class="script-title">혜정의 포트폴리오</h1>
+          <svg class="title-swish" viewBox="0 0 400 34" aria-hidden="true"><path d="M5 23 Q 90 3, 190 16 T395 10"/></svg>
+          <p class="intro-note">다섯 개의 공간에 담아갈 저의 작업 이야기</p>
+          <div class="load-line" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="greeting" id="greeting" aria-hidden="true">
+          <div class="character-spotlight" aria-label="손을 흔들며 인사하는 혜정 캐릭터">
+            <div class="character-halo" aria-hidden="true"></div>
+            <!-- [교체 지점 2] 캐릭터 파츠: 아래 5개 PNG는 캔버스 크기·좌표가 서로 같아야 합니다.
+                 통째로 바꾸려면 5개를 같은 위치로 다시 내보내세요. -->
+            <div class="character" aria-hidden="true">
+              <img src="assets/guide-body.png" class="character-body" alt="">
+              <img src="assets/guide-blink.png" class="character-expression expression-blink" alt="">
+              <img src="assets/guide-speak.png" class="character-expression expression-speak" alt="">
+              <img src="assets/guide-speak-blink.png" class="character-expression expression-speak-blink" alt="">
+              <img src="assets/guide-forearm.png" class="character-forearm" alt="">
+            </div>
+          </div>
+          <div class="greeting-copy">
+            <p class="eyebrow">HELLO, WELCOME!</p>
+            <h2>안녕하세요!<br><em>혜정</em>입니다.</h2>
+            <p class="greeting-desc">제가 만든 작업들을 작은 테마파크에 담아봤어요.<br>마음에 드는 공간을 클릭해서 둘러보세요.</p>
+            <div class="speech-tag"><span class="speech-dot"></span> 준비되셨다면 테마파크로 입장해 볼까요?</div>
+            <button class="primary-btn" id="goMapFromGreeting">테마파크 입장하기 <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="map-scene" id="mapScene" aria-labelledby="mapTitle" aria-hidden="true">
+        <header class="map-header">
+          <div class="brand-lockup">
+            <div><span class="brand-small">HYEJEONG'S</span><h2 id="mapTitle">PORTFOLIO WORLD</h2></div>
+          </div>
+          <div class="map-header-actions">
+            <span class="completion"><span class="completion-led"></span><span id="visitedCount">0/2</span>개 작품 방문</span>
+            <div class="menu-wrap">
+              <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="menuPanel">
+                <span></span><span></span><span></span>
+              </button>
+              <div class="header-menu" id="menuPanel" aria-hidden="true">
+                <div class="menu-title">작품목록</div>
+                <button class="menu-link" data-open-work="daangn">- 당근</button>
+                <button class="menu-link" data-open-work="yonggari">- 용가리</button>
+                <hr>
+                <button class="menu-link replay" id="replayBtn">인트로 다시보기</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="map-main">
+          <div class="map-heading">
+            <div class="map-overline">WELCOME TO MY LITTLE PARK</div>
+            <p>끌리는 랜드마크에 마우스를 올려보세요. <strong>반짝이는 구역</strong>을 누르면 작품이 열려요.</p>
+          </div>
+
+          <div class="map-scroll" id="mapScroll" tabindex="0" aria-label="테마파크 지도. 모바일에서는 좌우로 스크롤할 수 있습니다.">
+            <div class="map-board" id="mapBoard">
+              <!-- [교체 지점 3] 지도의 배경 이미지입니다. 완성된 랜드마크가 한 장으로 합쳐진 이미지.
+                   새 지도로 교체하면 아래 SVG 구역 테두리와 클릭 영역 위치도 확인해야 합니다. -->
+              <img src="assets/themepark.webp" alt="좌측 위 용가리치킨, 우측 위 당근마켓 광고 역기획, 아래쪽 세 곳의 예정 구역으로 구성된 포트폴리오 테마파크 지도" class="map-art">
+              <svg class="zone-outlines" viewBox="0 0 1448 1086" aria-hidden="true" preserveAspectRatio="none">
+                <path data-outline="yonggari" d="M58 347 C35 220 90 106 257 74 C442 27 646 70 694 198 L682 370 C609 440 475 450 313 435 L168 418 Q76 417 58 347 Z"/>
+                <path data-outline="daangn" d="M741 175 Q797 84 936 59 L1177 68 Q1395 98 1403 283 L1331 426 Q1212 469 1037 465 L883 436 Q758 363 741 175 Z"/>
+                <path class="future-outline" data-outline="future-1" d="M74 549 Q136 475 290 449 L482 466 Q588 514 575 622 L523 754 L238 771 L90 735 Q50 670 74 549 Z"/>
+                <path class="future-outline" data-outline="future-2" d="M502 699 Q555 605 696 601 Q842 606 914 694 L919 838 Q778 899 615 873 Q509 818 502 699 Z"/>
+                <path class="future-outline" data-outline="future-3" d="M963 543 Q1043 460 1196 472 L1350 484 Q1432 538 1403 658 L1363 802 L1130 837 Q964 799 930 701 Z"/>
+              </svg>
+
+              <!-- [작품 추가 지점 4] 각 영역의 실제 클릭 버튼. 새 구역 추가 시 data-project 값,
+                   styles.css의 위치(.zone-hit-새이름), app.js의 projectData를 같이 수정 -->
+              <button class="zone-hit zone-hit-yonggari" data-project="yonggari" aria-label="용가리치킨 상세페이지 작품 열기"><span class="hotspot-text">↗ 작품 보기</span></button>
+              <button class="zone-hit zone-hit-daangn" data-project="daangn" aria-label="당근마켓 광고 역기획 작품 열기"><span class="hotspot-text">↗ 작품 보기</span></button>
+              <div class="future-hit future-left" data-future="future-1" aria-label="추가 작품 예정 구역 1"></div>
+              <div class="future-hit future-center" data-future="future-2" aria-label="추가 작품 예정 구역 2"></div>
+              <div class="future-hit future-right" data-future="future-3" aria-label="추가 작품 예정 구역 3"></div>
+              <div class="zone-activity activity-yonggari" data-activity="yonggari" aria-hidden="true"><div class="mini-figure yellow"></div><div class="mini-label">활성화</div></div>
+              <div class="zone-activity activity-daangn" data-activity="daangn" aria-hidden="true"><div class="mini-figure orange"></div><div class="mini-label">활성화</div></div>
+              <div class="hover-caption" id="hoverCaption" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+          <p class="map-footnote">✦ 현재 <b>2개 구역 공개</b> · 새로운 작품을 위한 터 <b>3곳</b> 마련 중</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="corner-dock" id="cornerDock" aria-label="내 정보와 지도 메뉴">
+      <button type="button" class="dock-map dock-btn" id="mapToggle" aria-label="테마파크 지도 접기" aria-pressed="true" title="지도 접기·펼치기">
+        <span class="map-icon-stack" aria-hidden="true">
+          <!-- 접힌 상태: 아코디언으로 세 번 접힌 종이지도 -->
+          <svg class="map-icon map-icon-folded" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 9 31 12 40 8 44 11 44 37 35 34 26 38 20 35Z" fill="#FFF5D9" stroke="#527A75" stroke-width="2.1" stroke-linejoin="round"/>
+            <path d="M20 9 26 12V38L20 35Z" fill="#A4CFAD"/>
+            <path d="M26 12 35 9V34L26 38Z" fill="#FFE8A5"/>
+            <path d="M35 9 44 11V37L35 34Z" fill="#E8B879"/>
+            <path d="M26 12V38M35 9V34" stroke="#527A75" stroke-width="1.35" stroke-linejoin="round"/>
+            <path d="M29 31Q31 23 38 28" stroke="#CC8962" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2.5 3"/>
+            <path d="M30 18a4 4 0 0 1 8 0c0 2.3-4 6.1-4 6.1S30 20.3 30 18Z" fill="#F38A6C" stroke="#A64D44" stroke-width=".9"/>
+            <circle cx="34" cy="18" r="1.25" fill="#FFF6E8"/>
+            <path d="M18.5 11.5V33.5" stroke="#F5EACF" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+          <!-- 호버 상태: 오른쪽 날개가 조금 열린 종이지도 -->
+          <svg class="map-icon map-icon-peek" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 11 25 8 37 12 51 7V35L38 39 26 35 13 39Z" fill="#FFF8E5" stroke="#557B78" stroke-width="2.1" stroke-linejoin="round"/>
+            <path d="M13 11 25 8V35L13 39Z" fill="#9BCBA6"/>
+            <path d="M25 8 37 12V39L25 35Z" fill="#FFE6A4"/>
+            <path d="M37 12 51 7V35L37 39Z" fill="#DDECB8"/>
+            <path d="M25 8V35M37 12V39" stroke="#557B78" stroke-width="1.25"/>
+            <path d="M17 31Q20 20 26 24T46 20" stroke="#DB9863" stroke-width="2" stroke-dasharray="3 3" stroke-linecap="round"/>
+            <circle cx="18.5" cy="19" r="3" fill="#7BAF84"/><path d="M18.5 21.5V26" stroke="#507A60" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M30 18a4.5 4.5 0 0 1 9 0c0 2.9-4.5 7-4.5 7S30 20.9 30 18Z" fill="#F18C72" stroke="#AC6250" stroke-width="1"/>
+            <circle cx="34.5" cy="18" r="1.6" fill="white"/>
+            <path d="M43 14V9M42 10 49 8 47.5 12Z" fill="#F4AB53" stroke="#A97045" stroke-width=".8" stroke-linejoin="round"/>
+          </svg>
+          <!-- 펼쳐진 상태: 여전히 접힌 주름이 보이는 지도 -->
+          <svg class="map-icon map-icon-open" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 13 21 8 36 13 54 7V34L37 40 21 35 6 40Z" fill="#FFF9E9" stroke="#547875" stroke-width="2.1" stroke-linejoin="round"/>
+            <path d="M6 13 21 8V35L6 40Z" fill="#A5CDAA"/>
+            <path d="M21 8 36 13V40L21 35Z" fill="#FFE7AA"/>
+            <path d="M36 13 54 7V34L36 40Z" fill="#DDE8B8"/>
+            <path d="M21 8V35M36 13V40" stroke="#547875" stroke-width="1.4"/>
+            <path d="M12 32Q15 24 23 26T41 20T50 26" stroke="#D99964" stroke-width="1.9" stroke-dasharray="3 2.5" stroke-linecap="round"/>
+            <circle cx="15" cy="18" r="3.5" fill="#6DB080"/><path d="M15 21V25" stroke="#47795B" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M25 19a5 5 0 0 1 10 0c0 3.3-5 7.6-5 7.6S25 22.3 25 19Z" fill="#F28B70" stroke="#A96456" stroke-width="1"/>
+            <circle cx="30" cy="19" r="1.8" fill="#FFF9E8"/>
+            <path d="M45 24V14M42 17 48 17M43 13.5a2 2 0 1 0 4 0 2 2 0 0 0-4 0" stroke="#607F9B" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M45 24H41M45 24H49" stroke="#607F9B" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="dock-map-label" id="mapToggleLabel">지도 접기</span>
+      </button>
+      <button type="button" class="dock-avatar dock-btn" id="profileToggle" aria-label="혜정의 연락처와 프로필 열기" aria-haspopup="dialog" aria-controls="contactModal" title="내 정보">
+        <img src="assets/guide-head.png" alt=""><span class="dock-dot" aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <!-- [수정 지점 5] 캐릭터 클릭 시 나오는 내 정보 패널.
+         오른쪽 위치/슬라이드 애니메이션은 styles.css 맨 아래 "6차 수정"에서 변경.
+         실제 이메일/SNS 주소는 app.js의 contactData에서 수정. -->
+    <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="contactTitle">
+      <div class="modal-backdrop" data-close="contact"></div>
+      <section class="contact-sheet" tabindex="-1">
+        <header class="contact-head"><div><p class="eyebrow">ME · CONTACT</p><h2 id="contactTitle">함께 작업할까요?</h2><p>혜정의 프로필과 연락처를 확인할 수 있어요.</p></div><button class="close-project" id="closeContact" aria-label="프로필 닫기">×</button></header>
+        <!-- [교체 지점 6] 아래 프로필 이미지 src 값은 assets/guide-head.png -->
+        <div class="contact-owner"><img src="assets/guide-head.png" alt="혜정 안내 캐릭터"><div><strong>혜정</strong><small>Design · Video Editing · Creative Works</small></div></div>
+        <div class="contact-links" id="contactLinks" aria-label="연락처 목록"></div>
+        <p class="contact-help">현재는 데모용 빈 연락처입니다. VS Code에서 <code>app.js</code>의 <code>contactData</code>에 실제 주소를 넣으면 클릭할 수 있어요.</p>
+      </section>
+    </div>
+
+    <div class="project-modal" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projectTitle">
+      <div class="modal-backdrop" data-close="true"></div>
+      <article class="project-sheet" tabindex="-1">
+        <header class="project-topbar"><button class="back-to-map" id="backToMap">← 지도로 돌아가기</button><span class="project-index" id="projectIndex">PROJECT 01 / 02</span><button class="close-project" id="closeProject" aria-label="프로젝트 닫기">×</button></header>
+        <div class="project-body">
+          <div class="project-visual" id="projectVisual">
+            <div class="visual-noise" aria-hidden="true"></div>
+            <span class="art-kicker" id="artKicker">DETAIL PAGE DESIGN</span>
+            <div class="art-big" id="artBig">YONGGARI</div>
+            <span class="art-caption">PORTFOLIO PROJECT</span>
+          </div>
+          <div class="project-info">
+            <span class="pill-category" id="projectType">상세페이지 디자인</span>
+            <h2 id="projectTitle">용가리치킨 상세페이지</h2>
+            <p class="project-summary" id="projectSummary"></p>
+            <div class="project-facts"><div><span>분야</span><strong id="projectCategory"></strong></div><div><span>상태</span><strong>포트폴리오 프로젝트</strong></div></div>
+            <h3>작업물 미리보기</h3>
+            <div class="asset-placeholder" id="assetPlaceholder"><span aria-hidden="true">▧</span><p>실제 작업물 이미지 또는 PDF를 이곳에 연결할 수 있어요.</p><small>현재 화면은 사이트 인터랙션 확인용 데모입니다.</small></div>
+            <p class="project-instruction">실제 포트폴리오 이미지는 <code>assets/</code> 폴더에 넣고 <code>app.js</code>의 <code>projectData</code>를 수정하세요.</p>
+            <div class="project-actions"><button class="primary-btn" id="nextProject">다음 작품 살펴보기 →</button></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
